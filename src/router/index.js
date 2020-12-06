@@ -4,13 +4,22 @@ import VueRouter from 'vue-router'
 // 组件导入
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
-
+import Welcome from '../components/Welcome.vue'
+import Users from '../components/user/users.vue'
 Vue.use(VueRouter)
 
 const routes = [
   { path: '/', redirect: '/login' }, // 访问根目录 默认从定向到login
   { path: '/login', component: Login }, // 访问路由 login
-  { path: '/home', component: Home }
+  { 
+    path: '/home', 
+    component: Home ,
+    redirect:'/welcome',
+    children:[
+      {path:'/welcome',component:Welcome},
+      {path:'/users',component:Users}
+    ]
+  }
 ]
 
 const router = new VueRouter({
